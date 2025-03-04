@@ -22,4 +22,4 @@ class MyDatabasePipeline:
         return item
     
     def close_spider(self, spider):
-        self.conn.close() 
+        self.conn.close()

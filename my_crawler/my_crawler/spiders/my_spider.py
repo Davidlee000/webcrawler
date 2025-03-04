@@ -6,18 +6,12 @@ class MySpider(scrapy.Spider):
     start_urls = ["https://www.python.org"]
 
     def parse(self, response):
-        # Extract page title
-        title = response.css("title::text").get()
-        
-        # Extract all links
-        links = response.css("a::attr(href)").getall()
-        
         yield {
-            "title": title,
+            "title": response.css("title::text").get(),
             "url": response.url,
-            "links": links
+            "links": response.css("a::attr(href)").getall()
         }
 
-        # Follow each link and call parse method recursively
-        for link in links:
+        # Follow links
+        for link in response.css("a::attr(href)").getall():
             yield response.follow(link, callback=self.parse) 

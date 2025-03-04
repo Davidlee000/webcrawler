@@ -12,4 +12,12 @@ ITEM_PIPELINES = {
 }
 
 # Configure delay between requests
-DOWNLOAD_DELAY = 2 
+DOWNLOAD_DELAY = 2
+
+FEEDS = {
+    'output.json': {
+        'format': 'json',
+        'encoding': 'utf8',
+        'store_empty': False,
+    },
+} 
